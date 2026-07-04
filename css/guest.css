@@ -1,5 +1,19 @@
-@import url("common.css");
+﻿@import url("common.css");
 @import url("animation.css");
+
+/* ==========================================================================
+   Tokens — Emerald, antique gold & ivory, drawn from the nikah/Kerala brief
+   ========================================================================== */
+:root {
+    --ink: #123832;
+    --ink-deep: #0a2521;
+    --gold: #c6a15b;
+    --gold-soft: #e7d7ab;
+    --gold-line: rgba(198, 161, 91, 0.45);
+    --ivory: #fbf7ee;
+    --maroon: #7a2331;
+    --mist: #efe9db;
+}
 
 html {
     scrollbar-width: none !important;
@@ -11,79 +25,229 @@ html {
     -ms-overflow-style: auto !important;
 }
 
+/* ==========================================================================
+   Type
+   ========================================================================== */
 .font-esthetic {
-    font-family: 'san-serif', cursive !important;
+    font-family: "Cormorant Garamond", "EB Garamond", serif !important;
+    letter-spacing: 0.01em;
 }
 
 .font-arabic {
-    font-family: 'Noto Naskh Arabic', serif !important;
+    font-family: "Noto Naskh Arabic", serif !important;
 }
 
-.img-center-crop {
-    width: 13rem;
-    height: 13rem;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
+body,
+p, small, .navbar-nav, .btn {
+    font-family: "EB Garamond", "Jost", serif;
+}
+
+.eyebrow {
+    font-family: "Jost", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 0.35rem 0;
+}
+
+.letter-spacing {
+    letter-spacing: 0.2em !important;
+}
+
+/* ==========================================================================
+   Surfaces
+   ========================================================================== */
+html[data-bs-theme="light"] .bg-light-dark {
+    background-color: var(--mist);
+}
+
+html[data-bs-theme="dark"] .bg-light-dark {
+    background-color: var(--ink-deep);
+}
+
+html[data-bs-theme="light"] .bg-white-black {
+    background-color: var(--ivory);
+    color: var(--ink-deep);
+}
+
+html[data-bs-theme="dark"] .bg-white-black {
+    background-color: #081714;
+    color: var(--gold-soft);
+}
+
+html[data-bs-theme="light"] .bg-theme-auto {
+    background-color: #fff;
+    border: 1px solid var(--gold-line);
+}
+
+html[data-bs-theme="dark"] .bg-theme-auto {
+    background-color: rgba(198, 161, 91, 0.08);
+    border: 1px solid var(--gold-line);
+}
+
+.text-theme-auto {
+    color: var(--gold) !important;
+}
+
+html[data-bs-theme="light"] .bg-overlay-auto {
+    background-color: rgba(251, 247, 238, 0.72);
+    backdrop-filter: blur(6px);
+}
+
+html[data-bs-theme="dark"] .bg-overlay-auto {
+    background-color: rgba(8, 23, 20, 0.72);
+    backdrop-filter: blur(6px);
 }
 
 html[data-bs-theme="dark"] .btn-transparent {
-    background-color: rgba(var(--bs-dark-rgb), 0.5) !important;
+    background-color: rgba(10, 37, 33, 0.55) !important;
     backdrop-filter: blur(0.5rem);
 }
 
 html[data-bs-theme="light"] .btn-transparent {
-    background-color: rgba(var(--bs-light-rgb), 0.5) !important;
+    background-color: rgba(251, 247, 238, 0.7) !important;
     backdrop-filter: blur(0.5rem);
 }
 
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn-outline-auto {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    background: transparent;
+    letter-spacing: 0.08em;
+    transition: all 0.35s ease;
+}
+
+    .btn-outline-auto:hover {
+        background: var(--gold);
+        color: var(--ink-deep);
+    }
+
+html[data-bs-theme="dark"] .btn-outline-auto {
+    color: var(--gold-soft);
+    border-color: var(--gold-soft);
+}
+
+/* ==========================================================================
+   Signature element — arch frame for portraits (echoes a mihrab silhouette)
+   ========================================================================== */
+.arch-frame {
+    position: relative;
+    width: 13.5rem;
+    height: 16rem;
+    margin: 0 auto;
+    padding: 0.5rem;
+    border: 1px solid var(--gold-line);
+    border-radius: 50% 50% 4px 4px / 38% 38% 4px 4px;
+}
+
+    .arch-frame::before {
+        content: "";
+        position: absolute;
+        inset: 6px;
+        border: 1px solid var(--gold);
+        border-radius: 50% 50% 2px 2px / 38% 38% 2px 2px;
+        pointer-events: none;
+    }
+
+    .arch-frame::after {
+        content: "☾";
+        position: absolute;
+        top: -0.85rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1.1rem;
+        color: var(--gold);
+        background: inherit;
+    }
+
+.img-center-crop {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 50% 50% 2px 2px / 36% 36% 2px 2px;
+}
+
+.rounded-circle.img-center-crop {
+    border-radius: 50% 50% 2px 2px / 36% 36% 2px 2px !important;
+}
+
+/* ==========================================================================
+   Jali divider — replaces generic wave separators
+   ========================================================================== */
+.jali-divider {
+    position: relative;
+    height: 2.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+    .jali-divider::before {
+        content: "";
+        flex: 1 1 auto;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--gold-line) 30%, var(--gold-line) 70%, transparent);
+        max-width: 40%;
+    }
+
+    .jali-divider::after {
+        content: "";
+        flex: 1 1 auto;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--gold-line) 30%, var(--gold-line) 70%, transparent);
+        max-width: 40%;
+    }
+
+    .jali-divider span {
+        font-family: "Cormorant Garamond", serif;
+        color: var(--gold);
+        font-size: 1.35rem;
+        margin: 0 0.9rem;
+        transform: rotate(45deg);
+        display: inline-block;
+        border: 1px solid var(--gold-line);
+        width: 0.6rem;
+        height: 0.6rem;
+    }
+
+.no-gap-bottom {
+    margin-bottom: 0 !important;
+}
+
+/* ==========================================================================
+   Loading / welcome overlays
+   ========================================================================== */
 .loading-page {
     position: fixed;
     inset: 0;
     width: 100%;
     height: 100%;
     z-index: 1056;
+    background-color: var(--ivory);
 }
 
-html[data-bs-theme="light"] .color-theme-svg {
-    color: rgb(255, 255, 255);
-    background-color: var(--bs-light);
-}
-
-html[data-bs-theme="dark"] .color-theme-svg {
-    color: rgb(0, 0, 0);
-    background-color: var(--bs-dark);
-}
-
-html[data-bs-theme="light"] .bg-light-dark {
-    background-color: rgb(var(--bs-light-rgb));
-}
-
-html[data-bs-theme="dark"] .bg-light-dark {
-    background-color: rgb(var(--bs-dark-rgb));
-}
-
-html[data-bs-theme="light"] .bg-white-black {
-    background-color: rgb(var(--bs-white-rgb));
-}
-
-html[data-bs-theme="dark"] .bg-white-black {
-    background-color: rgb(var(--bs-black-rgb));
-}
-
-.bg-cover-home {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    mask-image: linear-gradient(0.5turn, transparent, black 40%, black 60%, transparent);
+html[data-bs-theme="dark"] .loading-page {
+    background-color: #081714;
 }
 
 .width-loading {
     width: 25%;
 }
 
-.cursor-pointer {
-    cursor: pointer;
+.progress {
+    background-color: var(--mist);
+}
+
+.progress-bar {
+    background-color: var(--gold) !important;
 }
 
 @media screen and (max-width: 992px) {
@@ -98,6 +262,69 @@ html[data-bs-theme="dark"] .bg-white-black {
     }
 }
 
+/* ==========================================================================
+   Countdown pill
+   ========================================================================== */
+#wedding-date .border.rounded-pill {
+    border-color: var(--gold-line) !important;
+    background: var(--ivory);
+}
+
+html[data-bs-theme="dark"] #wedding-date .border.rounded-pill {
+    background: rgba(198, 161, 91, 0.06);
+}
+
+#wedding-date .border.rounded-pill p {
+    font-family: "Cormorant Garamond", serif;
+    color: var(--ink);
+    font-weight: 600;
+}
+
+html[data-bs-theme="dark"] #wedding-date .border.rounded-pill p {
+    color: var(--gold-soft);
+}
+
+/* ==========================================================================
+   Bottom nav
+   ========================================================================== */
+#navbar-menu {
+    background: var(--ivory);
+    border-top-color: var(--gold-line) !important;
+}
+
+html[data-bs-theme="dark"] #navbar-menu {
+    background: #081714;
+}
+
+#navbar-menu .nav-link {
+    color: var(--ink);
+    font-family: "Jost", sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+html[data-bs-theme="dark"] #navbar-menu .nav-link {
+    color: var(--gold-soft);
+}
+
+#navbar-menu .nav-link.active {
+    opacity: 1;
+    color: var(--gold);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.bg-cover-home {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mask-image: linear-gradient(0.5turn, transparent, black 40%, black 60%, transparent);
+}
+
 svg {
     display: block;
     line-height: 0;
@@ -105,21 +332,14 @@ svg {
     backface-visibility: hidden;
 }
 
-.svg-wrapper {
-    overflow: hidden !important;
-    transform: translateZ(0) !important;
-}
-
-.no-gap-bottom {
-    margin-bottom: -0.75rem !important;
-}
-
-main,
-#navbar-menu {
+main, #navbar-menu {
     position: relative;
     z-index: 1;
 }
 
+/* ==========================================================================
+   Ambient petals (kept, retinted to a muted gold-rose)
+   ========================================================================== */
 .rose-hearts {
     position: fixed;
     inset: 0;
@@ -132,34 +352,34 @@ main,
 
 .rose-heart {
     position: absolute;
-    width: 18px;
-    height: 18px;
-    background: linear-gradient(145deg, #c21833, #e63946);
+    width: 14px;
+    height: 14px;
+    background: linear-gradient(145deg, var(--gold), #9c7a3a);
     transform: rotate(-45deg);
-    opacity: 0.12;
+    opacity: 0.14;
     animation: floatRose linear forwards;
-    filter: drop-shadow(0 0 8px rgb(198 40 40 / 0.25));
+    filter: drop-shadow(0 0 8px rgba(198, 161, 91, 0.25));
 }
 
-.rose-heart::before,
-.rose-heart::after {
-    content: "";
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    background: inherit;
-    border-radius: 50%;
-}
+    .rose-heart::before,
+    .rose-heart::after {
+        content: "";
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        background: inherit;
+        border-radius: 50%;
+    }
 
-.rose-heart::before {
-    top: -9px;
-    left: 0;
-}
+    .rose-heart::before {
+        top: -7px;
+        left: 0;
+    }
 
-.rose-heart::after {
-    left: 9px;
-    top: 0;
-}
+    .rose-heart::after {
+        left: 7px;
+        top: 0;
+    }
 
 @keyframes floatRose {
     0% {
@@ -168,7 +388,7 @@ main,
     }
 
     15% {
-        opacity: 0.22;
+        opacity: 0.24;
     }
 
     50% {
