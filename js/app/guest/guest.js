@@ -247,7 +247,7 @@ export const guest = (() => {
         const data = new URLSearchParams({
             action: 'TEMPLATE',
             text: 'The Wedding of Rimshad and Raniya',
-            dates: `${formatDate('2026-04-12 10:00')}/${formatDate('2026-04-13 11:00')}`,
+            dates: `${formatDate('2026-08-27 11:00')}/${formatDate('2026-08-27 14:00')}`,
             details: 'We warmly invite you to join us on our special day. Your presence and prayers would be a true blessing and a great honor to us.',
             location: 'Aroma Garden Auditorium, 42GV+WWQ, Valluvambram - Mongam Bypass, Valluvambram, Kerala 673642',
             ctz: config.get('tz'),
